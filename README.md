@@ -1,79 +1,29 @@
-# SPLIT — Smart Expense Splitter
+SPLIT — Smart Expense Splitter
 
-A small web app for groups who share costs. Add everyone, log what each person
-paid, and SPLIT works out who owes whom — and the shortest way to settle up.
+checkout - https://smart-split-ruby.vercel.app
 
-**Tagline:** Keep the numbers fair.
+SPLIT is a simple expense-sharing web app built to make group expenses easier to manage.
 
-## Features
+Add the people involved, record who paid for each expense, choose who shared it, and SPLIT handles the calculations for you. It also shows everyone's balance and suggests how the remaining amount can be settled.
 
-- Group participants — add and remove people, with duplicate-name protection
-- Expense tracking — description, amount, who paid, and who it is split between
-- Automatic equal splitting, down to the last paisa
-- Payer is added to the split by default, and can be taken out deliberately
-- Balance calculation — total paid, total share, and net balance per person
-- Settlement plan — the fewest transfers that clear every balance
-- Edit and delete expenses, with everything recalculating instantly
-- localStorage persistence — refresh the page and your workspace is still there
-- Responsive design, light and dark themes, keyboard accessible
+ What it does
 
-## Running it
+- Add and manage participants
+- Record shared expenses
+- Choose who paid and who participated
+- Automatically calculate each person's share
+- Track who owes and who should receive money
+- Generate a simple settlement plan
+- Edit or delete expenses
+- Save the workspace using localStorage
+- Responsive design for desktop and mobile
 
-No build step, no dependencies. From the project folder:
+Built with
 
-```
-python3 -m http.server 8000
-```
+- HTML
+- CSS
+- Vanilla JavaScript
+- localStorage
 
-Then open <http://localhost:8000>.
+No frameworks or backend are used. The project is intentionally built with core web technologies to keep the logic simple and transparent.
 
-## Paid by vs. split between
-
-These are two different questions, and the form asks them separately:
-
-- **Paid by** — who actually handed over the money.
-- **Split between** — who the cost belongs to.
-
-Picking a payer ticks them in the split automatically, because that is what
-normally happens. You can untick them if someone is covering the bill on behalf
-of others; the form then says so out loud instead of quietly changing the maths.
-
-The split is always calculated from **Split between** alone. The payer only
-affects what they paid, never what they owe.
-
-## How the maths works
-
-Every calculation happens in paise (whole numbers) instead of rupees, so shares
-always add back up to the exact total — no `₹599.999999`.
-
-- Each person's share of an expense is `amount ÷ number of people in the split`.
-  If the amount doesn't divide evenly, the leftover paisa goes to the first of them.
-- `net balance = total paid − total share`. Positive means they get money back,
-  negative means they owe.
-- The settlement plan repeatedly matches the largest debtor with the largest
-  creditor, which keeps the number of transfers to a minimum.
-
-Nothing is uploaded anywhere — all data lives in your own browser.
-
-## Tech
-
-HTML
-CSS
-Vanilla JavaScript
-
-## Files
-
-```
-index.html      markup
-style.css       design system, layout, responsive rules
-script.js       state, calculations, rendering
-assets/         favicon
-```
-
-Built as part of:
-
-Coding Ninjas 10X SRM Web Development Recruitment Task
-
-Built by:
-
-MITHILESHWARAN D
